@@ -9,3 +9,5 @@ jobs:
     steps:
       - name: run test
         run: echo 'no test yet'
+      - name: format checks
+        run: for file in $(find . -iname '*.py'); do diff -u <(cat "$file") <(autopep8 "$file") || exit 1; done
