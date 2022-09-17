@@ -1,8 +1,9 @@
 from fastapi import APIRouter
 from starlette.responses import RedirectResponse
 import starlette.status as status
-import item as contracts
+import src.libs.models.item as contracts
 import random
+import time
 
 router = APIRouter()
 
@@ -26,6 +27,13 @@ async def read_random_region_data():
 async def save_data(item: contracts.Region):
     item_dict = item.dict()
 
-    # save data
+    is_ok = await save_data()
+
+    item_dict.update({"save_status": is_ok})
 
     return item_dict
+
+
+async def save_data():
+    time.sleep(random.random() / 2)
+    return True

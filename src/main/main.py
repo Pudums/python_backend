@@ -1,8 +1,8 @@
 import time
 from fastapi import FastAPI, Request
-from routers import router
+from src.main.routers import router
 from starlette.middleware.base import BaseHTTPMiddleware
-from middlewares import Content_type_logger
+from src.libs.middlewares.middlewares import Content_type_logger
 
 app = FastAPI(
     title="BaseApp",
