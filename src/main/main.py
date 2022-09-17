@@ -13,9 +13,10 @@ app = FastAPI(
 )
 
 
-
 app.include_router(router)
 my_middleware = Content_type_logger()
+
+
 @app.middleware("http")
 async def add_process_time_header(request: Request, call_next):
     start_time = time.time()
@@ -23,4 +24,6 @@ async def add_process_time_header(request: Request, call_next):
     process_time = time.time() - start_time
     response.headers["X-Process-Time"] = str(process_time)
     return response
+
+
 app.add_middleware(BaseHTTPMiddleware, dispatch=my_middleware)
