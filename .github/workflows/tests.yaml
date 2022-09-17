@@ -1,0 +1,8 @@
+name: CI
+on: [push]
+jobs:
+  unit-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: run test
+        run: echo 'no test yet'
