@@ -13,6 +13,7 @@ app = FastAPI(
 )
 
 
+
 app.include_router(router)
 my_middleware = Content_type_logger()
 
