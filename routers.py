@@ -1,5 +1,8 @@
 from fastapi import APIRouter
+from starlette.responses import RedirectResponse
+import starlette.status as status
 import item as contracts
+import random
 
 router = APIRouter()
 
@@ -10,22 +13,19 @@ def read_root():
 
 
 @router.get("/region/{region_id}")
-async def read_item(region_id: int):
-    return {"weather_ is": "good", "chance_of_rain_is": 15}
+async def read_weather(region_id: int):
+    return {"weather_ is": "good", "chance_of_rain_is": 15, "region_id": region_id}
 
 
-@router.get("/user/")
-async def read_user(user_id: str, q: str | None = None):
-    if q:
-        return {"user_id": user_id, "q": q}
-    return {"user_id": user_id}
+@router.get("/random_region/")
+async def read_random_region_data():
+    return RedirectResponse(f"/region/{int(random.random() * 100)}")
 
 
-@router.post("/items/")
-async def create_item(item: contracts.Item):
+@ router.post("/add_real_weather/")
+async def save_data(item: contracts.Region):
     item_dict = item.dict()
 
-    if item.tax:
-        price_with_tax = item.price + item.tax
-        item_dict.update({"price_with_tax": price_with_tax})
+    # save data
+
     return item_dict

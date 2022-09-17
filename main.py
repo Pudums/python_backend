@@ -1,9 +1,8 @@
 import time
-import logging
 from fastapi import FastAPI, Request
 from routers import router
 from starlette.middleware.base import BaseHTTPMiddleware
-from middlewares import ContentTypeLogger
+from middlewares import Content_type_logger
 
 app = FastAPI(
     title="BaseApp",
@@ -15,7 +14,7 @@ app = FastAPI(
 
 
 app.include_router(router)
-my_middleware = ContentTypeLogger()
+my_middleware = Content_type_logger()
 
 
 @app.middleware("http")
