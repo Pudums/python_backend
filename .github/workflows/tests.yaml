@@ -1,5 +1,8 @@
 name: CI
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - 'HW*'
 jobs:
   unit-tests:
     runs-on: ubuntu-latest
