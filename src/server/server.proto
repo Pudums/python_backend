@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+message Null { }
+
+message Data
+{
+    string token = 1;
+    string ID = 2;
+    uint32 real_weather = 3;
+}
+
+message Confirmation
+{
+    bool succed = 1;
+}
+
+service WebBack
+{
+    rpc AddWeather(Data) returns (Confirmation);
+}
